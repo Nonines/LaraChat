@@ -12,7 +12,7 @@ class ChatController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Chat/Main');
+        return Inertia::render('Chat/Index');
     }
 
     /**
