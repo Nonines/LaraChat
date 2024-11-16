@@ -6,9 +6,8 @@ import Search from './Components/SearchInput.vue';
 </script>
 
 <template>
-    <MainLayout>
+    <MainLayout title="Chat">
         <Header :currentPage="'Chats'" />
-
         <Search />
     </MainLayout>
 </template>

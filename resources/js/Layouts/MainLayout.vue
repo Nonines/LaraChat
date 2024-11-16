@@ -1,9 +1,10 @@
 <script setup>
 import { computed } from 'vue';
 import { Head } from '@inertiajs/vue3';
+import { useSidebarStore } from '@/stores/sidebar';
+
 import Banner from '@/Components/Banner.vue';
 import Sidebar from '@/Components/Custom/Sidebar.vue';
-import { useSidebarStore } from '@/stores/sidebar';
 
 defineProps({
     title: String,
@@ -25,10 +26,12 @@ const isOpen = computed(() => sidebarStore.isOpen);
             @click="sidebarStore.closeSidebar">
         </div>
 
-        <Sidebar />
+        <div class="lg:flex">
+            <Sidebar />
 
-        <main>
-            <slot />
-        </main>
+            <main class="lg:w-full">
+                <slot />
+            </main>
+        </div>
     </div>
 </template>
