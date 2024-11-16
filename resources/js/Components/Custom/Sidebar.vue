@@ -1,19 +1,18 @@
 <script setup>
-defineProps({
-    sidebarActive: Boolean,
-});
+import { computed } from 'vue';
+import { useSidebarStore } from '@/stores/sidebar';
 
-defineEmits(['closeSidebar']);
-
+const sidebarStore = useSidebarStore();
+const isOpen = computed(() => sidebarStore.isOpen);
 </script>
 
 <template>
-    <div :class="{hidden: !sidebarActive}" class="fixed z-[100] flex flex-col w-4/5 min-h-screen py-6 px-8 bg-primary-100 dark:bg-primary-900">
+    <div :class="{hidden: !isOpen}" class="fixed z-[100] flex flex-col w-4/5 min-h-screen py-6 px-8 bg-primary-100 dark:bg-primary-900">
         <div class="flex justify-between pb-12">
             <img class="w-12" src="/assets/svg/brand.svg" alt="">
 
             <!-- button -->
-            <div @click="$emit('closeSidebar')" class="flex items-center justify-center">
+            <div @click="sidebarStore.closeSidebar" class="flex items-center justify-center">
                 <svg class="w-6 h-6 text-primary-500 dark:text-primary-200" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
