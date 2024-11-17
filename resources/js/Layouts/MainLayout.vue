@@ -1,6 +1,6 @@
 <script setup>
-import { computed } from 'vue';
-import { Head } from '@inertiajs/vue3';
+import { computed, onMounted } from 'vue';
+import { Head, router } from '@inertiajs/vue3';
 import { useSidebarStore } from '@/stores/sidebar';
 
 import Banner from '@/Components/Banner.vue';
@@ -12,6 +12,12 @@ defineProps({
 
 const sidebarStore = useSidebarStore();
 const isOpen = computed(() => sidebarStore.isOpen);
+
+onMounted(() => {
+    router.on('navigate', () => {
+        sidebarStore.closeSidebar();
+    });
+});
 </script>
 
 <template>
